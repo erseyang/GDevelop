@@ -47,7 +47,7 @@ export type StorageProviderOperations = {|
   onSaveProjectAs?: (
     project: gdProject,
     fileMetadata: ?FileMetadata,
-    options?: { isSameStorageProvider?: boolean }
+    options?: { context?: 'duplicateCurrentProject' }
   ) => Promise<{|
     wasSaved: boolean,
     fileMetadata: ?FileMetadata,

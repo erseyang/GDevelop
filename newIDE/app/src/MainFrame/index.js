@@ -1754,7 +1754,7 @@ const MainFrame = (props: Props) => {
   );
 
   const saveProjectAsWithStorageProvider = React.useCallback(
-    (isSameStorageProvider?: boolean) => {
+    (context?: 'duplicateCurrentProject') => {
       if (!currentProject) return;
 
       saveUiSettings(state.editorTabs);
@@ -1777,7 +1777,7 @@ const MainFrame = (props: Props) => {
       setIsSavingProject(true);
 
       onSaveProjectAs(currentProject, currentFileMetadata, {
-        isSameStorageProvider,
+        context,
       })
         .then(
           ({ wasSaved, fileMetadata }) => {
@@ -2527,6 +2527,8 @@ const MainFrame = (props: Props) => {
             saveProjectAsWithStorageProvider(
               storageProvider.internalName ===
                 currentStorageProvider.internalName
+                ? 'duplicateCurrentProject'
+                : undefined
             );
           }}
         />
